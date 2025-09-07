@@ -1,0 +1,28 @@
+
+.posts-container{
+
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+
+    margin-left: 50vh;
+    margin-right: 50vh;
+
+
+    
+
+   
+
+    margin-top: 10vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    
+
+    gap:3vh;
+}

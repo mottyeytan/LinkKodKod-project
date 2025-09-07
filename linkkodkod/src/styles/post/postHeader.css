@@ -1,0 +1,40 @@
+.post-header-contanier{
+    width: 70vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    /* border: 1px solid black; */
+}
+
+.post-profile-picture img{
+    margin: 2px;
+    margin-top: 3px;
+    margin-left: 4px;
+    align-items: center;
+    justify-content: center;
+
+    width: 9vh;
+    height: 9vh;
+    border-radius: 50%;
+    border: 1px solid green ;
+}
+
+.name-and-date{
+
+    margin-right:35vh;
+}
+
+.profile-name{
+
+    font-size: 2.5vh;
+    text-align: start;
+}
+
+.date{
+
+    font-size: 1.5vh;
+    text-align: start;
+
+}

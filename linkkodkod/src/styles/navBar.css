@@ -1,0 +1,45 @@
+#nav-bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color:#003e6d;
+    height: 10vh;
+    position: fixed;
+    width: 100%;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.129);
+
+
+
+}
+
+.logo img{
+
+    width:15vh;
+    height: 6vh;
+}
+
+.logo1 {
+    width: 5vh;
+}
+
+.login-section{
+
+    display: flex;
+    gap:2vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 4vh;
+
+    margin-right: 2vh;
+
+    margin-left: 2vh;
+
+    margin-top: 3vh;
+
+    margin-bottom: 2vh;
+
+}
+
+

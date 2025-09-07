@@ -1,0 +1,28 @@
+.content-container{
+    width: 70vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.picture-content img{
+
+    width: 70vh;
+    border-radius: 2%;
+    
+}
+
+.text-content{
+    text-align: start;
+}
+
+
+.short-content{
+
+    max-height: 10vh;
+}
+
+.long-content{
+    max-height: none;
+}
+
