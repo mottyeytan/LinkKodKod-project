@@ -1,7 +1,6 @@
 import Post from "./Post/MainPost";
 import posts from "../../data/posts.json" 
 import "../../styles/mainPage.css"
-import Navbar from "./Navbar";
 
 
 export default function MainPage(){
@@ -9,7 +8,7 @@ export default function MainPage(){
 
     return (
         <>
-        <Navbar />
+       
         
         
 
