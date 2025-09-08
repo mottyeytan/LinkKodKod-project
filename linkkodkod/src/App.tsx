@@ -1,31 +1,29 @@
-import MainPage from './componets/application-layout/MainBackround.tsx' 
+import MainPage from './componets/application-layout/MainBackround.tsx'
+import { Route, Routes, useLocation } from 'react-router-dom' 
+import Navbar from "./componets/application-layout/Navbar";
+import PostPage from "./pages/PostPage";
+import LoginPage from './pages/LoginPage.tsx';
+
 import './App.css'
-import { useEffect, useState } from 'react'
+
 
 function App() {
-  const [img, setImg]=useState<any>()
+  const location = useLocation();
+  const showNavBar = location.pathname !== '/login';
 
-  async function getPosts():Promise<void>{
-
-
-
-    const res = await fetch('http://localhost:5001/posts/getPosts')
-    const data = await res.json()
-    setImg(data.posts[1].postPicture)
-    console.log(data.posts[4].postPicture)
-    
-    return 
-  }
-
-  useEffect(()=>{
-    getPosts()
-  },[])
-
+ 
   return (
     <>
-    <MainPage />
+     {showNavBar && <Navbar />}
 
-    <img src={img} alt="post" />
+
+     <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/post/:id" element={<PostPage />} />
+      <Route path="/login" element={<LoginPage />} />
+     </Routes>
+
+    
       
     </>
   )
