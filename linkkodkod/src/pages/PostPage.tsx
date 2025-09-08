@@ -1,35 +1,48 @@
 import { usePosts } from "../context/usePosts";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { type Post } from "../context/PostsService";
+import "../styles/postPage.css";
 
 export default function PostPage(){
 
-    const {posts, selectedPost} = usePosts()
+    const {posts} = usePosts()
+    const { id } = useParams<{ id: string }>()
 
     const [post, setPost] = useState<Post | null>(null)
     const [postLoading, setPostLoading] = useState<boolean>(false)
     const [postError, setPostError] = useState<string | null>(null)
 
-    console.log("hi ", selectedPost)
+    console.log("Post ID from URL:", id)
 
    
     function getPost(){
+        if (!id) {
+            setPostError('No post ID provided')
+            return
+        }
+
         setPostLoading(true)
         setPostError(null)
         try{
-        const postFound = posts.find(post => post.id === Number(selectedPost))
-        setPost(postFound || null)
+            const postFound = posts.find(post => post.id === Number(id))
+            if (postFound) {
+                setPost(postFound)
+            } else {
+                setPostError('Post not found')
+            }
         }catch(error){
             setPostError(error instanceof Error ? error.message : 'An error occurred')
         }finally{
-        setPostLoading(false)
-        
+            setPostLoading(false)
         }
     }
 
     useEffect(() => {
-        getPost()
-    }, [selectedPost])
+        if (posts.length > 0) {
+            getPost()
+        }
+    }, [id, posts])
 
 
     console.log("hi", post?.content)

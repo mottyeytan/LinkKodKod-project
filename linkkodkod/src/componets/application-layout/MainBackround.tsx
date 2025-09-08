@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function MainPage(){
-    const {posts, loading, error,  setselectedPost}= usePosts()
+    const {posts, loading, error}= usePosts()
     const navigate = useNavigate()
 
 
@@ -29,7 +29,6 @@ export default function MainPage(){
             PostPicture={post.postPic}
             
             onClick ={()=>{
-                setselectedPost(post.id)
                 navigate(`/post/${post.id}`)
             }}
 
