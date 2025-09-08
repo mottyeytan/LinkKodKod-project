@@ -9,7 +9,7 @@ export default function ContentPost({content, picture}:{content:string, picture:
     //i will defind max content lenght 
     const MaxTextContentlen: number = 100
 
-    const LongTextContent: boolean = content.length < MaxTextContentlen
+    const LongTextContent: boolean = content ? content.length < MaxTextContentlen : false
 
     const [isExpanded, setIsExpanded] = useState<boolean>(LongTextContent)
 

@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from "./componets/application-layout/Navbar";
 import PostPage from "./pages/PostPage";
 import LoginPage from './pages/LoginPage.tsx';
+import { PostsProvider } from './context/usePosts.tsx';
 
 import './App.css'
 
@@ -14,6 +15,7 @@ function App() {
  
   return (
     <>
+    <PostsProvider>
      {showNavBar && <Navbar />}
 
 
@@ -22,6 +24,9 @@ function App() {
       <Route path="/post/:id" element={<PostPage />} />
       <Route path="/login" element={<LoginPage />} />
      </Routes>
+
+
+     </PostsProvider>
 
     
       

@@ -19,14 +19,14 @@ export class PostsService{
     static async getAllPosts(): Promise<Post[]> {
         
         try{
-            const response = await fetch(`${BASE_URL}getPosts`);
+            const response = await fetch(`${BASE_URL}getPosts`  );
             const data = await response.json();
 
             if(!response.ok){
                 throw new Error(`Failed to fetch posts: ${response.status} ${response.statusText}`);
             }
 
-            return data.riddle || [];
+            return data.posts || [];
         } catch (error) {
             console.error('Error fetching posts:', error);
             throw error;

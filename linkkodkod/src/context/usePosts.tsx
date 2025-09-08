@@ -9,7 +9,9 @@ export interface PostContextType{
     loading: boolean;
     error: string | null;
     postsLength: number;
+    selectedPost: number | null;
     createPost: (post: Post) => Promise<void>;
+    setselectedPost: (id: number) => void;
 
 }
 
@@ -24,6 +26,7 @@ export function PostsProvider({children}:{children : React.ReactNode}){
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [selectedPost, setSelectedPost] = useState<number | null>(null);
 
 
     useEffect(() => {
@@ -46,7 +49,8 @@ export function PostsProvider({children}:{children : React.ReactNode}){
 
         fetchAllPosts();
     }, [refreshTrigger]);
-    
+
+
     
     async function createPost(post: Post){
         try {
@@ -56,10 +60,13 @@ export function PostsProvider({children}:{children : React.ReactNode}){
             console.error('Error creating post:', err);
         }
     }
-    
+
+    async function setselectedPost(id:number){
+        setSelectedPost(id)
+    }
 
     return (
-        <PostContext.Provider value={{ posts, loading, error, postsLength ,createPost  }}>
+        <PostContext.Provider value={{ posts, loading, error, postsLength ,createPost , selectedPost, setselectedPost }}>
             {children}
         </PostContext.Provider>
     );

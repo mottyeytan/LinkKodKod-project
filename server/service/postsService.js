@@ -1,5 +1,4 @@
 import getAllPostsDAL from '../dal/postsDAl.js';
-import getImageDAL from '../dal/postsDAl.js';
 
 
 export default async function getAllPostsService(){
@@ -18,15 +17,14 @@ export default async function getAllPostsService(){
 
 }
 
-export default async function getImageService(){
 
+export async function getOnePostService(id){
     try{
-
-        const image = await getImageDAL()
-
-        return image
+        const post = await getOnePostDAL(id)
+        return post
     }catch(e){
         console.log(e)
         return e
     }
 }
+

@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.get('/getPosts', getAllPostsController )
-router.get('/getImage', getImageController )
+router.get('/getOnePost/:id', getOnePostController )
 // router.post('/addPost',)
 // router.put('/editPosts',)
 // router.delete('/deletePost',)
