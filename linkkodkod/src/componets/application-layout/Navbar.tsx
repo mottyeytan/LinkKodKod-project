@@ -9,7 +9,7 @@ export default function Navbar(){
         <div id="nav-bar-container" >
 
             <div className="logo">
-                <img id="logo2" src="logo2.png"></img>
+                <img className="logo2" src="logo2.png"></img>
                 <img className="logo1" src="logo1.png"></img>
 
             </div>

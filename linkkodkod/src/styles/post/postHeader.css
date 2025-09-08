@@ -1,5 +1,5 @@
 .post-header-contanier{
-    width: 70vh;
+    width: 100%;
 
     display: flex;
     flex-direction: row;
@@ -23,7 +23,10 @@
 
 .name-and-date{
 
-    margin-right:35vh;
+    /* margin-right:35vh; */
+    margin-right: 15rem;
+    
+    
 }
 
 .profile-name{
@@ -38,3 +41,13 @@
     text-align: start;
 
 }
+
+
+@media (max-width: 768px) {
+    .name-and-date{
+
+        margin-right: 3rem;
+        
+        
+    }
+    }

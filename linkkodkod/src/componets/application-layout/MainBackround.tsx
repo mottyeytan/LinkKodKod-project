@@ -13,7 +13,7 @@ export default function MainPage(){
         
         
 
-
+<main className="main-page-contanier">
     <div className="posts-container">
 
         {posts.map(post=>(
@@ -33,6 +33,8 @@ export default function MainPage(){
     
 
         </div>
+
+</main>
 </>
 
 

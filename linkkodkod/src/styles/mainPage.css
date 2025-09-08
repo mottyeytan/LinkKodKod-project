@@ -1,28 +1,25 @@
 
-.posts-container{
 
-    max-width: 1280px;
+
+ .posts-container{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+    max-width: 600px;
     margin: 0 auto;
     padding: 2rem;
-    text-align: center;
-
-    margin-left: 50vh;
-    margin-right: 50vh;
-
-
-    
-
-   
-
     margin-top: 10vh;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
     
+    /* margin: 0 auto ; */
+    width: 100%;
+    gap:2vh;
+} 
 
-    gap:3vh;
-}
+
+@media (max-width: 768px) {
+    .posts-container {
+    max-width: 100%; 
+    padding: 8px;
+    }
+    }
