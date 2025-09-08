@@ -5,11 +5,11 @@ import ContentPost from "./ContentPost"
 import ButtonPost from "./ButtomPost"
 
 
-export default function Post({profileNmae, ProfilePic, postDate, PostTextContent, PostPicture}:{profileNmae:string,ProfilePic:string,postDate:string,PostTextContent:string,PostPicture:string    }){
+export default function Post({profileNmae, ProfilePic, postDate, PostTextContent, PostPicture, onClick}:{profileNmae:string,ProfilePic:string,postDate:string,PostTextContent:string,PostPicture:string, onClick:()=>void    }){
 
     return (
 
-        <div className="Post-container">
+        <div className="Post-container" onClick={onClick}>
 
 
         <PostHeader profileName={profileNmae} ProfilePic={ProfilePic} date={postDate} />
