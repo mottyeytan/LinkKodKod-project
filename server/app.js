@@ -2,6 +2,10 @@ import express from 'express'
 import PostRoutes from './routes/postsRoutes.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+
+
+
 
 dotenv.config();
 
@@ -15,7 +19,10 @@ server.use(cors({
 
 server.options('*', cors());
 
-server.use(express.static('public'));
+
+server.use(express.static(path.join(process.cwd(),'public' )));
+
+
 
 server.use(express.json());
 
@@ -25,7 +32,7 @@ server.use("/posts", PostRoutes)
 const PORT = process.env.PORT || 3000;
 
 
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 

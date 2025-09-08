@@ -1,5 +1,5 @@
 import getAllPostsDAL from '../dal/postsDAl.js';
-
+import getImageDAL from '../dal/postsDAl.js';
 
 
 export default async function getAllPostsService(){
@@ -16,4 +16,17 @@ export default async function getAllPostsService(){
 
 
 
+}
+
+export default async function getImageService(){
+
+    try{
+
+        const image = await getImageDAL()
+
+        return image
+    }catch(e){
+        console.log(e)
+        return e
+    }
 }
