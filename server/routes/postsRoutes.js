@@ -1,7 +1,6 @@
 import express from 'express';
 
-import  { getAllPostsController }  from '../controllers/PostsController.js' ;
-import  { getImageController }  from '../controllers/PostsController.js' ;
+import  { getAllPostsController, getOnePostController }  from '../controllers/PostsController.js' ;
 
 const router = express.Router();
 

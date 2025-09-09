@@ -41,11 +41,13 @@ export class PostsService{
             const response = await fetch(`${BASE_URL}getOnePost/${id}`)
             const data = await response.json();
 
+            console.log(data, data.posts)
+
             if(!response.ok){
                 throw new Error('Failed to fetch post');
             }
 
-            return data;
+            return data.posts || [];
         } catch (error) {
             console.error('Error fetching post:', error);
             throw error;

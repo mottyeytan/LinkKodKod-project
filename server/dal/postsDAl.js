@@ -1,7 +1,7 @@
 import posts  from '../data/posts.json' with { type: 'json' }
 
 
-export default async function getAllPostsDAL(){
+export async function getAllPostsDAL(){
 
     try{
 

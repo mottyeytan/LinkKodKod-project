@@ -20,7 +20,7 @@ server.use(cors({
 server.options('*', cors());
 
 
-server.use(express.static(path.join(process.cwd(),'public' )));
+server.use(express.static('public' ));
 
 
 

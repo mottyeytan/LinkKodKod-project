@@ -1,7 +1,7 @@
-import getAllPostsDAL from '../dal/postsDAl.js';
+import { getAllPostsDAL ,getOnePostDAL} from '../dal/postsDAl.js';
 
 
-export default async function getAllPostsService(){
+export async function getAllPostsService(){
 
     try{
 
@@ -12,8 +12,6 @@ export default async function getAllPostsService(){
         console.log(e)
         return e
     }
-
-
 
 }
 

@@ -1,5 +1,4 @@
-import getAllPostsService from '../service/postsService.js';
-import getImageService from '../service/postsService.js';
+import {getAllPostsService, getOnePostService} from '../service/postsService.js';
 
 // GET
 export const getAllPostsController = async (req, res) => {
@@ -18,7 +17,7 @@ export const getAllPostsController = async (req, res) => {
 export const getOnePostController = async (req, res) => {
     try{
         const {id} = req.params;
-        const post = await getOnePostService(id);
+        const post = await getOnePostService(parseInt(id));
         res.status(200).json({ post });
     }catch(err){
         res.status(500).json({ error: err.message });

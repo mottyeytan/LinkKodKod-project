@@ -1,0 +1,45 @@
+.post-page-container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   max-width: 600px;
+   margin: 0 auto;
+   padding: 2rem;
+   margin-top: 10vh;
+   
+   /* margin: 0 auto ; */
+   width: 100%;
+   gap:2vh;
+
+
+    
+}
+
+.pic img{
+
+    height:100px;
+    width: 100px;
+}
+
+.user-contanier-post-page{
+
+    display: flex;
+    flex-direction: row;
+    gap: 1vh;
+    width: 100%;
+
+}
+
+.post-content{
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.post-picture{
+
+    width: 100%;
+}

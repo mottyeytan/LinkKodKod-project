@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function MainPage(){
-    const {posts, loading, error,  setselectedPost}= usePosts()
+    const {posts, loading, error}= usePosts()
     const navigate = useNavigate()
+
+    console.log(posts)
 
 
     return (
@@ -23,13 +25,12 @@ export default function MainPage(){
             <Post 
             key={post.id}
             profileNmae={post.username}
-            ProfilePic={post.userPic}
+            ProfilePic={"http://localhost:5001/"+post.userPic}
             postDate={post.PublishDate}
             PostTextContent={post.content}
-            PostPicture={post.postPic}
+            PostPicture={"http://localhost:5001/" + post.postPic}
             
             onClick ={()=>{
-                setselectedPost(post.id)
                 navigate(`/post/${post.id}`)
             }}
 

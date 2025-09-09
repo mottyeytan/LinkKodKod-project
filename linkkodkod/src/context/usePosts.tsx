@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect , createContext} from "react";
 import { PostsService, type Post } from "./PostsService";
-
+import { useParams } from "react-router";
 
 
 export interface PostContextType{
@@ -9,12 +9,9 @@ export interface PostContextType{
     loading: boolean;
     error: string | null;
     postsLength: number;
-    selectedPost: number | null;
+    selectedPost: Post[] ;
     createPost: (post: Post) => Promise<void>;
-    setselectedPost: (id: number) => void;
-
 }
-
 
 const PostContext = createContext<PostContextType | undefined>(undefined)
 
@@ -26,7 +23,11 @@ export function PostsProvider({children}:{children : React.ReactNode}){
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
-    const [selectedPost, setSelectedPost] = useState<number | null>(null);
+    const [selectedPost, setSelectedPost] = useState<Post[]>([]);
+
+    const {id} = useParams();
+
+
 
 
     useEffect(() => {
@@ -51,7 +52,33 @@ export function PostsProvider({children}:{children : React.ReactNode}){
     }, [refreshTrigger]);
 
 
-    
+    useEffect(() => {
+        async function FetchOnePost(){
+
+            console.log("id", Number(id))
+
+
+            try {
+                setLoading(true);
+                setError(null);
+                const data = await PostsService.getOnePost(Number(id));
+                setSelectedPost(Array.isArray(data) ? data : []);
+
+                console.log(data, "hello")
+            } catch (err) {
+                console.error('Error fetching post:', err);
+                setError(err instanceof Error ? err.message : 'An error occurred');
+                setPosts([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+
+        FetchOnePost();
+    }, [refreshTrigger]);
+
+
     async function createPost(post: Post){
         try {
             await PostsService.createPost(post);
@@ -61,19 +88,15 @@ export function PostsProvider({children}:{children : React.ReactNode}){
         }
     }
 
-    async function setselectedPost(id:number){
-        setSelectedPost(id)
-    }
+    
 
     return (
-        <PostContext.Provider value={{ posts, loading, error, postsLength ,createPost , selectedPost, setselectedPost }}>
+        <PostContext.Provider value={{ posts, loading, error, postsLength ,createPost , selectedPost}}>
             {children}
         </PostContext.Provider>
     );
 
-
 }
-
 
 export function usePosts() {
     const context = useContext(PostContext);
