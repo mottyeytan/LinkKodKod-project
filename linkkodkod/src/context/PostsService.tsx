@@ -41,7 +41,6 @@ export class PostsService{
             const response = await fetch(`${BASE_URL}getOnePost/${id}`)
             const data = await response.json();
 
-            console.log(data, data.posts)
 
             if(!response.ok){
                 throw new Error('Failed to fetch post');
@@ -56,17 +55,15 @@ export class PostsService{
     }
 
 
-    static async createPost(post: Post): Promise<Post> {
+    static async createPost(post: FormData): Promise<any> {
         
         try{
             const response = await fetch(`${BASE_URL}createPost`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(post)
+                body: post
             });
             const data = await response.json();
+            console.log(data, "data")
 
             if(!response.ok){
                 throw new Error('Failed to create post');

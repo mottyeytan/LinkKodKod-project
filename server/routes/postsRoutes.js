@@ -1,13 +1,13 @@
 import express from 'express';
 
-import  { getAllPostsController, getOnePostController }  from '../controllers/PostsController.js' ;
+import  { getAllPostsController, getOnePostController,addPostController }  from '../controllers/PostsController.js' ;
 
 const router = express.Router();
 
 
 router.get('/getPosts', getAllPostsController )
 router.get('/getOnePost/:id', getOnePostController )
-// router.post('/addPost',)
+router.post('/createPost', addPostController )
 // router.put('/editPosts',)
 // router.delete('/deletePost',)
 

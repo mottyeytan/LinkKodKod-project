@@ -10,7 +10,7 @@ export interface PostContextType{
     error: string | null;
     postsLength: number;
     selectedPost: Post[] ;
-    createPost: (post: Post) => Promise<void>;
+    createPost: (post: FormData) => Promise<void>;
 }
 
 const PostContext = createContext<PostContextType | undefined>(undefined)
@@ -55,9 +55,6 @@ export function PostsProvider({children}:{children : React.ReactNode}){
     useEffect(() => {
         async function FetchOnePost(){
 
-            console.log("id", Number(id))
-
-
             try {
                 setLoading(true);
                 setError(null);
@@ -79,7 +76,7 @@ export function PostsProvider({children}:{children : React.ReactNode}){
     }, [refreshTrigger]);
 
 
-    async function createPost(post: Post){
+    async function createPost(post: FormData){
         try {
             await PostsService.createPost(post);
             setRefreshTrigger(prev => prev + 1);

@@ -25,3 +25,13 @@ export async function getOnePostDAL(id){
     }
 }
 
+export async function addPostDAL(post){
+    try{
+        posts.push(post)
+        return post
+    }catch(e){
+        console.log(e)
+        return e
+    }
+}
+

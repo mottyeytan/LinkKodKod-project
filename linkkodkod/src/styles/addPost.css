@@ -1,0 +1,104 @@
+.add-post-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+   
+}
+
+.modal-container{
+    background: white;
+    padding: 20px;
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+    min-width: 300px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1001;
+}
+
+.modal-container-bigger{
+    background: white;
+    padding: 20px;
+    width: 50%;
+    height: 85%;
+    border-radius: 10px;
+    min-width: 300px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1001;
+}
+
+.bigger-modal img{
+    width: 100%;
+    height: 100%;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-body-input-text{
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+   
+}
+
+.modal-body-input-text:focus{
+    outline: none;
+}
+
+.modal-body-input-text:hover{
+    border: 1px solid black;
+}
+
+.modal-body-input-file-img{
+    width: 100%;
+    
+    border: none;
+    border-radius: 10px;
+   
+}
+
+.picture-icon-img{
+    font-size: 40px;
+    color: #1f0374;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .modal-container {
+        width: 90%;
+        height: 50%;
+    }
+}

@@ -3,6 +3,7 @@ import PostRoutes from './routes/postsRoutes.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import multer from 'multer';
 
 
 
@@ -18,6 +19,18 @@ server.use(cors({
 }));
 
 server.options('*', cors());
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+    cb(null, "public/uploads");
+    },
+    filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+    },
+    });
+    const upload = multer({ storage });
+
+server.use("/public", express.static('public' ));
 
 
 server.use(express.static('public' ));

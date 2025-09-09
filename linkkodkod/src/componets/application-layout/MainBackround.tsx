@@ -2,19 +2,33 @@ import Post from "./Post/MainPost";
 import "../../styles/mainPage.css"
 import { usePosts } from "../../context/usePosts";
 import { useNavigate } from "react-router-dom";
+import AddPostModal from "./AddPost";
+import { useState } from "react";
 
 
 export default function MainPage(){
     const {posts, loading, error}= usePosts()
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const navigate = useNavigate()
 
-    console.log(posts)
+
+    function handleCloseModal(){
+        setIsModalOpen(false)
+    }
 
 
     return (
         <>
 
     <main className="main-page-contanier">
+        <div className="add-post-button-container">
+
+        {!isModalOpen && <input type="button" onClick={()=>setIsModalOpen(true)} value="whats on your mind?"/> }
+        
+        {isModalOpen && <AddPostModal onClose={handleCloseModal} />}
+
+        </div>
+
         <div className="posts-container">
 
         {loading && <p>Loading posts...</p>}
