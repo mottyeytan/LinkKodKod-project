@@ -1,5 +1,6 @@
 import express from 'express'
 import PostRoutes from './routes/postsRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -41,6 +42,8 @@ server.use(express.json());
 
 
 server.use("/posts", PostRoutes)
+server.use('/auth', authRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 

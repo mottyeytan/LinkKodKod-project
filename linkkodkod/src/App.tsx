@@ -4,6 +4,7 @@ import Navbar from "./componets/application-layout/Navbar";
 import PostPage from "./pages/PostPage";
 import LoginPage from './pages/LoginPage.tsx';
 import { PostsProvider } from './context/usePosts.tsx';
+import { AuthProvider } from './context/useAuth.tsx';
 
 import './App.css'
 
@@ -15,6 +16,7 @@ function App() {
  
   return (
     <>
+    <AuthProvider>
     <PostsProvider>
      {showNavBar && <Navbar />}
 
@@ -27,6 +29,7 @@ function App() {
 
 
      </PostsProvider>
+     </AuthProvider>
 
     
       
