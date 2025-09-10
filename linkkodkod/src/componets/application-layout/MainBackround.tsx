@@ -45,8 +45,10 @@ export default function MainPage(){
             PostPicture={"http://localhost:5001/" + post.postPic}
             
             onClick ={()=>{
-                navigate(`/post/${post.id}`)
+                navigate(`/post/${post.id}` )
             }}
+
+           
 
             />
 

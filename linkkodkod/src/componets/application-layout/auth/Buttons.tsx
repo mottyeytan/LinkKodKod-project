@@ -8,26 +8,20 @@ export default function Buttons({ activeMode, onModeChange }: ButtonsProps){
     const renderButtons = () => {
         return (
             <>
-                {(activeMode === 'register' || activeMode === 'guest') && (
+                {(activeMode === 'signup') && (
                     <button className="login-button"
                     onClick={() => onModeChange('login')}>
                         back to login
                     </button>
                 )}
                 
-                {(activeMode === 'login' || activeMode === 'guest') && (
-                    <button className="register-button"
-                    onClick={() => onModeChange('register')}>
-                        register
+                {(activeMode === 'login') && (
+                    <button className="signup-button"
+                    onClick={() => onModeChange('signup')}>
+                        SignUp
                     </button>
                 )}
 
-                {(activeMode === 'login' || activeMode === 'register') && (
-                    <button className="guest-button"
-                    onClick={() => onModeChange('guest')}>
-                        login as guest
-                    </button>
-                )}
             </>
         );
     };

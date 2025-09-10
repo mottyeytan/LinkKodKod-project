@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import Buttons from "./Buttons.tsx";
-import Login from "./Login.tsx";
-import Guest from "./Guest.tsx";
-import Register from "./Register.tsx";
+import Login from "./login.tsx";
+import SignUp from "./signup.tsx";
 
 export default function MainLogin(){
     const [activeMode, setActiveMode] = useState('login');
@@ -10,10 +9,8 @@ export default function MainLogin(){
 
     const renderActiveComponent = () => {
         switch(activeMode) {
-            case 'register':
-                return <Register setLoading={setLoading} />;
-            case 'guest':
-                return <Guest setLoading={setLoading} />;
+            case 'signup':
+                return <SignUp setLoading={setLoading} />;
             default:
                 return <Login setLoading={setLoading} />;
         }

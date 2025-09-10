@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { useUsers } from './context/useAuth.tsx';
+import { useUsers } from '../../../context/useAuth';
+import type { User } from '../../../context/authService';
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,31 +12,25 @@ export default function Login({ setLoading }: { setLoading: (loading: boolean) =
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const { login } = useUsers();
+    const { LoginWithNamePassword, Login } = useUsers();
+
 
     async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         
         setLoading(true);
         try{
-            const response = await fetch('https://riddle-server.onrender.com/auth/login', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: username,
-                    password: password
-                })
-            });
 
-            const data = await response.json();
-            // console.log(data);
+            const user: User ={
+                name: username,
+                password:password
+            }
+            
+            const data =  await LoginWithNamePassword(user)
 
-            if(response.ok){
-                login(data.token, data.role);
-                navigate('/menu');
+            if(data){
+                
+                navigate('/');
                 setLoading(false);
             } else {
                 setError(data.message || 'Invalid username or password');

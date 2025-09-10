@@ -3,20 +3,22 @@ import { createUserDal,getAllUsersDal} from '../dal/usersDAL.js'
 
 
 
-export async function createUser(name, hashedPassword) {
+export async function createUser(newUser) {
     
     
-    const usersLen = getAllUsersDal().length || 0
+    const users = await getAllUsersDal()
+    const usersLen = users.length || 0
+
+    console.log(users)
     
-    const player = {
+    const user = {
         id: usersLen + 1 ,
-        name: name,
-        password: hashedPassword,
+        ...newUser
     }
     try{
-        const playerData = await createUserDal(player);
-        if(playerData){
-            return player;
+        const userData = await createUserDal(user);
+        if(userData){
+            return user;
         }else{
             return false;
         }

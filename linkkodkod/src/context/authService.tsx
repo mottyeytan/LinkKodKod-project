@@ -3,7 +3,7 @@ const BASE_URL= "http://localhost:5001/auth/";
 
 export interface User {
 
-    username: string;
+    name: string;
     password: string
 
 }
@@ -30,36 +30,13 @@ export class AuthService{
     }
 
 
-    static async getOnePost(id: number): Promise<User> {
-        
-        try{
-            
-            const response = await fetch(`${BASE_URL}getOnePost/${id}`)
-            const data = await response.json();
 
-
-            if(!response.ok){
-                throw new Error('Failed to fetch post');
-            }
-
-            return data.posts || [];
-        } catch (error) {
-            console.error('Error fetching post:', error);
-            throw error;
-        }
-        
-    }
-
-
-    static async createUser(user: User): Promise<any> {
+    static async createUser(user: FormData): Promise<any> {
         
         try{
             const response = await fetch(`${BASE_URL}signup`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(user)
+                body: user
             });
             const data = await response.json();
             console.log(data, "data")
@@ -79,7 +56,7 @@ export class AuthService{
     static async login(user: User): Promise<any> {
         
         try{
-            const response = await fetch(`${BASE_URL}signup`, {
+            const response = await fetch(`${BASE_URL}login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -87,7 +64,7 @@ export class AuthService{
                 body: JSON.stringify(user)
             });
             const data = await response.json();
-            console.log(data, "data")
+            
 
             if(!response.ok){
                 throw new Error('Failed to login user');

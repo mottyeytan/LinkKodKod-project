@@ -1,8 +1,18 @@
 
 import "../../styles/navBar.css"
 
+import { useNavigate } from "react-router-dom"
+
 
 export default function Navbar(){
+
+    const navigate = useNavigate()
+
+
+    function HandelLoginButton(){
+        navigate("/login")
+    }
+ 
 
     return (
 
@@ -16,7 +26,7 @@ export default function Navbar(){
 
             <div className="login-section">
 
-                <button>Login</button>
+                <button onClick={HandelLoginButton}>Login</button>
                 <button>SignUp</button>
 
             </div>

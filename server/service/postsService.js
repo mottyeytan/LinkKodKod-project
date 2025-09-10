@@ -28,6 +28,7 @@ export async function getOnePostService(id){
 
 export async function addPostService(post){
     try{
+
         const newPost = await addPostDAL(post)
         return newPost
     }catch(e){

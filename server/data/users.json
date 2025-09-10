@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "dfsfs",
+    "password": "$2b$12$f.OtPwViePHPPixffzt2XeQX9lxDKc.PfQQCe3lIh5Fep3PNYLew6",
+    "profilePic": "/uploads/1757494575186.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "momo",
+    "password": "$2b$12$116ZCUpEd24bh2V1JIHP2edoghC/9cWSorJkK7w7lOEUpwi/jblhK",
+    "profilePic": "/uploads/1757494649799.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "m",
+    "password": "$2b$12$eoOSl4pIGKE1N7hJAhv7seasue2aCZqPtxda.SQm7loJecfKvv9be",
+    "profilePic": "/uploads/1757496812543.jpeg"
+  }
+]

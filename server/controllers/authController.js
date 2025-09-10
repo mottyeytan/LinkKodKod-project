@@ -7,24 +7,34 @@ import { generateToken } from '../utils/jwt.js';
 
 export const signupController = async (req, res) => {
     try{
-        
         const { name, password} = req.body;
-        
-        let playerExists = false;
         
         const existingPlayer = await getUserByNameDal(name);
 
         if (existingPlayer) {
-            return res.status(403).json({ message: 'player already exists, please login', loggedIn: false });
+            return res.status(403).json({ message: 'user already exists, please login', loggedIn: false });
         }
 
         const hashedPassword = await hashPassword(password);
+
+        let imagePath = null;
+
+        if (req.files && req.files.length > 0) {
+            const imageFile = req.files[0];
+            imagePath = `/uploads/${imageFile.filename}`;
+            }
+
+        const newUser = {
+            name: name,
+            password: hashedPassword,
+            profilePic : imagePath
+        }
         
-        const player = await createUser(name, hashedPassword);
+        const user = await createUser(newUser);
         
-        if(player){
+        if(user){
             const token = generateToken(name);
-            res.status(201).json({token, player});
+            res.status(201).json({token, user});
         }else{
             res.status(403).json({ message: 'user not created' });
         }
@@ -39,7 +49,7 @@ export const loginController = async (req, res) => {
     try{
         
         const { name, password } = req.body;
-        const existingPlayer = await getPlayerByNameDal(name);
+        const existingPlayer = await getUserByNameDal(name);
         if (!existingPlayer) {
             return res.status(403).json({ message: 'player not found', loggedIn: false });
         }
@@ -47,8 +57,8 @@ export const loginController = async (req, res) => {
         if (!isPasswordValid) {
             return res.status(403).json({ message: 'invalid password' });
         }
-        const token = generateToken(name, existingPlayer.role);
-        res.status(200).json({token, role: existingPlayer.role});
+        const token = generateToken(name);
+        res.status(200).json({token, user: existingPlayer});
 
     }catch(err){
         console.log(err);

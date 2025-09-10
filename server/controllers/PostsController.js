@@ -5,9 +5,8 @@ export const getAllPostsController = async (req, res) => {
     try{
 
         const posts = await getAllPostsService();
-        
+      
         res.status(200).json({ posts });
-        
         
     }catch(err){
         res.status(500).json({ error: err.message });
@@ -26,30 +25,33 @@ export const getOnePostController = async (req, res) => {
 
 export const addPostController = async (req, res) => {
     try{
-        const username = req.body.username;
-        const userPic = req.body.userPic;
-        const PublishDate = req.body.PublishDate;
-        const content = req.body.content;
-        const postPic = req.postPic;
+        let content = req.body.content;
+        let username = req.body.username; 
+        
+        let imagePath = null;
 
-        upload.single('postPic')(req, res, async (err) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
+        if (req.files && req.files.length > 0) {
+            const imageFile = req.files[0];
+            imagePath = `/uploads/${imageFile.filename}`;
             }
-        });
-
+        
         const newPost = {
-            username,
-            userPic,
-            PublishDate,
-            content,
-            postPic
+            id: req.body.id,
+            username: username,
+            content: content,
+            postPic: imagePath,
+            PublishDate: new Date().toISOString(),
         }
+
         const post = await addPostService(newPost);
 
+        if (post) {
+            res.status(201).json({ post, message: "Post created successfully" });
+        } else {
+            res.status(500).json({ error: "Service returned false" });
+        }
 
-        res.status(200).json({ post, message: "Post added successfully" });
     }catch(err){
-        res.status(500).json({ error: err.message, message: "Post not added" });
+        res.status(500).json({ error: "Failed to create post" });
     }
-}
+    }
