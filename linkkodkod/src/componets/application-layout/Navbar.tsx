@@ -3,14 +3,31 @@ import "../../styles/navBar.css"
 
 import { useNavigate } from "react-router-dom"
 
+import { useUsers } from "../../context/useAuth";
+
+
 
 export default function Navbar(){
 
     const navigate = useNavigate()
 
+    const { token, name, profilePucture, Logout, setPressedLogoutTrue } = useUsers();
+
+
 
     function HandelLoginButton(){
         navigate("/login")
+    }
+
+    function HandelLogoutButton(){
+        Logout();
+    }
+
+    function HandelSignupButton(){
+        setPressedLogoutTrue()
+        navigate("/login")
+
+
     }
  
 
@@ -23,11 +40,33 @@ export default function Navbar(){
                 <img id="logo1" src="logo1.png"></img>
 
             </div>
-
             <div className="login-section">
+            {token && <div className="user-navbar">
 
-                <button onClick={HandelLoginButton}>Login</button>
-                <button>SignUp</button>
+                <p className="username-navbar">
+                    {name}
+
+                </p>
+
+                <img src={"http://localhost:5001/"+profilePucture}>
+                
+                </img>
+
+
+            </div>}
+
+            
+                {(token) ? (<button onClick={HandelLogoutButton}>Logout</button>):(
+                    <>
+                    <button onClick={HandelLoginButton}>Login</button>
+                    <button  onClick={HandelSignupButton}>SignUp</button>
+                    </>
+                )}
+                
+                
+                
+                
+                
 
             </div>
 

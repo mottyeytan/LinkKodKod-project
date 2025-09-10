@@ -16,5 +16,17 @@
     "name": "m",
     "password": "$2b$12$eoOSl4pIGKE1N7hJAhv7seasue2aCZqPtxda.SQm7loJecfKvv9be",
     "profilePic": "/uploads/1757496812543.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "motty eitan",
+    "password": "$2b$12$HkMnXV8xDMy31AkCiIozxeojxwrcWxC5QXZ5/lX0OLFhgrZ6VvbvS",
+    "profilePic": "/uploads/1757506370344.png"
+  },
+  {
+    "id": 5,
+    "name": "Inon Geuta",
+    "password": "$2b$12$KOU/MHBcrV6rLfPW.Q2GDOS3mib87VMCUCww8nnsBvdjrDr0AtWlW",
+    "profilePic": "/uploads/1757515265618.png"
   }
 ]

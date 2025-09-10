@@ -16,15 +16,6 @@ export async function getAllPostsService(){
 }
 
 
-export async function getOnePostService(id){
-    try{
-        const post = await getOnePostDAL(id)
-        return post
-    }catch(e){
-        console.log(e)
-        return e
-    }
-}
 
 export async function addPostService(post){
     try{

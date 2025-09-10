@@ -15,7 +15,9 @@ export default function ContentPost({content, picture}:{content:string, picture:
 
 
 
-    function HnadelExpand(){
+    function HnadelExpand(e:any){
+        e.stopPropagation()
+
         setIsExpanded(!isExpanded)
     }
 

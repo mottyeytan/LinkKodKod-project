@@ -13,20 +13,17 @@ export const getAllPostsController = async (req, res) => {
     }
 }
 
-export const getOnePostController = async (req, res) => {
-    try{
-        const {id} = req.params;
-        const post = await getOnePostService(parseInt(id));
-        res.status(200).json({ post });
-    }catch(err){
-        res.status(500).json({ error: err.message });
-    }
-}
 
 export const addPostController = async (req, res) => {
     try{
-        let content = req.body.content;
-        let username = req.body.username; 
+
+        
+
+        let {content, username, userPic, token} = req.body
+
+        if(!token){
+            res.status(401).json({message: " You are not authorized"})
+        }
         
         let imagePath = null;
 
@@ -41,6 +38,7 @@ export const addPostController = async (req, res) => {
             content: content,
             postPic: imagePath,
             PublishDate: new Date().toISOString(),
+            userPic: userPic
         }
 
         const post = await addPostService(newPost);

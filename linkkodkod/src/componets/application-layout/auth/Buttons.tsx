@@ -1,9 +1,12 @@
+
+
 interface ButtonsProps {
     activeMode: string;
     onModeChange: (mode: string) => void;
 }
 
 export default function Buttons({ activeMode, onModeChange }: ButtonsProps){
+
 
     const renderButtons = () => {
         return (

@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect , createContext} from "react";
 import { AuthService, type User } from "./authService";
-import { useParams } from "react-router";
+import { data, useParams } from "react-router-dom";
 
 
 export interface AuthContextType{
@@ -10,11 +10,15 @@ export interface AuthContextType{
     error: string | null;
     usersLength: number;
     createUser: (user: FormData) => Promise<void>;
-    Login: (Newtoken: string, name:string, profilePic:string) => any;
+    // Login: (Newtoken: string, name:string, profilePic:string) => any;
     LoginWithNamePassword: (user: User) => Promise<any>;
     token: string | null;
     profilePucture: string | any;
     name: string | null;
+    Logout: () => void;
+    LogOutPressed:boolean;
+    setPressedLogoutTrue: ()=> void 
+    setPressedLogoutFalse: ()=> void 
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -24,6 +28,7 @@ export function AuthProvider({children}:{children : React.ReactNode}){
     const [token, setToken] = useState<string | null>(null);
     const [profilePucture, setProfilePicure] = useState<string | null>(null)
     const [name, setName] = useState<string | null>(null)
+    const[LogOutPressed, setLogOutPressed] = useState<boolean>(false)
 
 
     const [users, setUsers]= useState<User[]>([])
@@ -38,12 +43,23 @@ export function AuthProvider({children}:{children : React.ReactNode}){
     const {id} = useParams();
 
 
+    console.log(profilePucture, "cehck")
+    console.log(name, "cekc name")
+    console.log(token, "cehcl token")
+
+
+
+
     useEffect(() => {
         const savedToken = localStorage.getItem('token');
+        const savedName = localStorage.getItem("name")
+        const savedPic = localStorage.getItem("profilePic")
     
 
-        if(savedToken  ){
+        if(savedToken || savedName ||savedPic ){
             setToken(savedToken);
+            setName(savedName);
+            setProfilePicure(savedPic)
             
         }
         
@@ -56,8 +72,28 @@ export function AuthProvider({children}:{children : React.ReactNode}){
             const data = await AuthService.login(user);
             setRefreshTrigger(prev => prev + 1);
 
+
             if(data){
-                Login(data.token, data.user.name, data.user.profilePic)
+
+                console.log(data.user, "cjeck user")
+
+                const name = data.user.name
+
+                const pic = data.user.profilePic
+
+                setToken(data.token);
+                setProfilePicure(pic)
+        
+                setName(name)
+
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('name', name)
+                localStorage.setItem('profilePic', pic)
+
+
+                // Login(data.token, data.user.name, data.user.profilePic)
+
+                console.log(typeof data.user.profilePic, "check")
             }
             
             return data
@@ -67,17 +103,6 @@ export function AuthProvider({children}:{children : React.ReactNode}){
     }
 
 
-    function Login(Newtoken: string, name:string, profilePic:string){
-        setToken(Newtoken);
-        setProfilePicure("http://localhost:5001/" + profilePic)
-        setName(name)
-
-        console.log("hi login")
-
-
-        localStorage.setItem('token', Newtoken);
-       
-    }
 
     function Logout(){
         setToken(null);
@@ -85,6 +110,8 @@ export function AuthProvider({children}:{children : React.ReactNode}){
         setName(null)
         
         localStorage.removeItem('token');
+        localStorage.removeItem('name')
+        localStorage.removeItem('profilePic')
         
 
     }
@@ -122,11 +149,18 @@ export function AuthProvider({children}:{children : React.ReactNode}){
     }
 
 
-    
+    function setPressedLogoutTrue(){
+        setLogOutPressed(true)
+    }
+
+    function setPressedLogoutFalse(){
+        setLogOutPressed(false)
+    }
+
 
 
     return (
-        <AuthContext.Provider value={{ users, loading, error, usersLength, createUser, Login, LoginWithNamePassword, token , profilePucture, name}}>
+        <AuthContext.Provider value={{ users, loading, error, usersLength, createUser,  LoginWithNamePassword, token , profilePucture, name, Logout,setPressedLogoutTrue, setPressedLogoutFalse, LogOutPressed}}>
             {children}
         </AuthContext.Provider>
     );

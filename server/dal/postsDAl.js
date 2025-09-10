@@ -34,15 +34,7 @@ export async function getAllPostsDAL(){
         }
         }
 
-export async function getOnePostDAL(id){
-    try{
-        const posts = getPosts();
-        return posts.find(post => post.id === id)
-    }catch(e){
-        console.log(e)
-        return null
-    }
-    }
+
 
 export async function addPostDAL(post){
     try{

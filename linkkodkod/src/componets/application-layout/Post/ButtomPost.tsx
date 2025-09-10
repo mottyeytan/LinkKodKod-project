@@ -7,7 +7,8 @@ export default function ButtonPost(){
     const [liked, setliked] = useState<boolean>(false)
 
 
-    function HnadelLike(){
+    function HnadelLike(e:any){
+        e.stopPropagation()
         setliked(!liked)
     }
 

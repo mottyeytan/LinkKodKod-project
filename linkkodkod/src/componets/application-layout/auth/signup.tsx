@@ -84,7 +84,7 @@ export default function SignUp({ setLoading }: { setLoading: (loading: boolean) 
             ) : (
             <>
             <FaImage />
-            <span>Click to add image</span>
+            <span>Click to add profile picture</span>
         </>
         )}
         <input

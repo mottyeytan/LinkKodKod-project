@@ -7,6 +7,10 @@ export default function MainLogin(){
     const [activeMode, setActiveMode] = useState('login');
     const [loading, setLoading] = useState(false);
 
+
+
+    
+
     const renderActiveComponent = () => {
         switch(activeMode) {
             case 'signup':

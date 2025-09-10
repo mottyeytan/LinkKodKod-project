@@ -4,6 +4,7 @@ import { usePosts } from "../../context/usePosts";
 import { useNavigate } from "react-router-dom";
 import AddPostModal from "./AddPost";
 import { useState } from "react";
+import { useUsers } from "../../context/useAuth";
 
 
 export default function MainPage(){
@@ -11,19 +12,22 @@ export default function MainPage(){
     const [isModalOpen, setIsModalOpen] = useState(false)
     const navigate = useNavigate()
 
+    const {token, name}= useUsers()
+
 
     function handleCloseModal(){
         setIsModalOpen(false)
     }
 
 
+
     return (
         <>
 
     <main className="main-page-contanier">
-        <div className="add-post-button-container">
+        <div className={`add-post-button-container `}>
 
-        {!isModalOpen && <input type="button" onClick={()=>setIsModalOpen(true)} value="whats on your mind?"/> }
+        {!isModalOpen && <input type="button" onClick={()=>setIsModalOpen(true)} value={token ? (`${name}, whats on your mind?`):("In order to post please login")} disabled={!token}/> }
         
         {isModalOpen && <AddPostModal onClose={handleCloseModal} />}
 

@@ -2,6 +2,7 @@ import "../../styles/addPost.css"
 import { FaImage } from 'react-icons/fa';
 import React, { useRef, useState } from 'react';
 import { usePosts } from '../../context/usePosts';
+import { useUsers } from "../../context/useAuth";
 
 export default function AddPostModal({onClose}:{onClose:()=>void}){
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -10,6 +11,8 @@ export default function AddPostModal({onClose}:{onClose:()=>void}){
     const [content, setContent] = useState<string>("");
     const [postPic, setPostPic] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    
+    const {profilePucture, name, token} = useUsers()
 
     function handleFileInputChange(e: React.ChangeEvent<HTMLInputElement>){
         const file = e.target.files?.[0];
@@ -23,11 +26,16 @@ export default function AddPostModal({onClose}:{onClose:()=>void}){
         e.preventDefault();
 
 
+        
+
+
 
         const formData = new FormData();
         formData.append("id", JSON.stringify(postsLength +1))
         formData.append("content", content);
-        formData.append("username", "User");
+        formData.append("username", name);
+        formData.append("userPic", profilePucture )
+        formData.append("token", token )
     
         if (postPic) {
             formData.append("img", postPic);
