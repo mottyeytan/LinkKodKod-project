@@ -8,7 +8,7 @@
 ---
 
 ## Project Description
-web app like facebook, you can register, login, watch and creat posts
+web app like facebook, you can register, login, watch and create posts
 
 ---
 
@@ -28,7 +28,7 @@ of server and client
 ---
 
 ## Installation & Running the Project
-clinet - npm ryn dev 
+clinet - npm run dev 
 server - node app.js --watch  
 
 
